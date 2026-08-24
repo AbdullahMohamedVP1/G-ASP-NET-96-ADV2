@@ -36,6 +36,27 @@ namespace AssigmentADV2
             Console.WriteLine("--- Clothing Under 100 ---");
             ProductSearcher.PrintProducts(ProductSearcher.SearchProducts(catalog, p => p.Category == "Clothing" && p.Price < 100));
             Console.WriteLine();
+
+            Console.WriteLine("--- Short Report ---");
+            ReportGenerator.PrintReport(catalog, p => Console.WriteLine($"{p.Name} - ${p.Price}"));
+            Console.WriteLine();
+
+            Console.WriteLine("--- Detailed Report ---");
+            ReportGenerator.PrintReport(catalog, p => Console.WriteLine($"[{p.Category}] {p.Name} | Price: ${p.Price} | Stock: {p.Stock}"));
+            Console.WriteLine();
+
+            Console.WriteLine("--- Summary List ---");
+            var summaryList = ReportGenerator.TransformProducts(catalog, p => $"{p.Name} (${p.Price})");
+            foreach (var s in summaryList){
+                Console.WriteLine(s);
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("--- Price Labels ---");
+            var priceLabels = ReportGenerator.TransformProducts(catalog, p => $"{p.Name}: {(p.Price > 100 ? "Expensive!" : "Affordable")}");
+            foreach (var pl in priceLabels){
+                Console.WriteLine(pl);
+            }
         }
     }
 }
