@@ -57,6 +57,14 @@ namespace AssigmentADV2
             foreach (var pl in priceLabels){
                 Console.WriteLine(pl);
             }
+            Console.WriteLine();
+
+            Console.WriteLine("--- Low-Stock Alert ---");
+            var lowStock = ReportGenerator.FilterProducts(catalog, p => p.Stock < 20);
+            foreach (var ls in lowStock)
+            {
+                Console.WriteLine($"[LOW STOCK] {ls.Name}: only {ls.Stock} left!");
+            }
         }
     }
 }

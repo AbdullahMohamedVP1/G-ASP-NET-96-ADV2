@@ -17,5 +17,15 @@ namespace AssigmentADV2
             }
             return result;
         }
+        public static List<Product> FilterProducts(List<Product> products, Predicate<Product> predicate)
+        {
+            var result = new List<Product>();
+            foreach (var p in products){
+                if (predicate(p)){
+                    result.Add(p);
+                }
+            }
+            return result;
+        }
     }
 }
